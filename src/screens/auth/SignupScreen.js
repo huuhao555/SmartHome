@@ -7,6 +7,7 @@ import {TouchableWithoutFeedback} from 'react-native';
 import {View} from 'react-native';
 import Foect from 'foect';
 import {Alert} from 'react-native';
+import SCREENS from '..';
 
 const SignupScreen = props => {
   const {navigation} = props;
@@ -20,7 +21,7 @@ const SignupScreen = props => {
           fontFamily: FONTS.MONTSERRAT_BOLD,
           fontSize: 24,
         }}>
-        Hello!
+        XIN CHÀO!
       </Text>
       <Text
         style={{
@@ -30,11 +31,12 @@ const SignupScreen = props => {
           marginTop: 20,
           marginHorizontal: 30,
         }}>
-        Welcome to the simplified version of React Native tutorial series!
+        Chào mừng bạn là thành viên mới của Smart Home nhóm 4
       </Text>
       <Foect.Form
         onValidSubmit={model => {
-          Alert.alert('Payload', JSON.stringify(model));
+          Alert.alert('Xác nhận', JSON.stringify(model));
+          navigation.navigate(SCREENS.CONFIRMEMAIL);
         }}>
         {form => (
           <View>
@@ -57,7 +59,7 @@ const SignupScreen = props => {
                         paddingHorizontal: 20,
                         fontFamily: FONTS.MONTSERRAT,
                       }}
-                      placeholder="First Name"
+                      placeholder="Họ và Tên"
                       placeholderTextColor={COLORS.PLACEHOLDER_COLOR}
                       cursorColor={COLORS.ORANGE}
                       selectionColor={COLORS.ORANGE}
@@ -68,7 +70,7 @@ const SignupScreen = props => {
                     {control.isInvalid && control.errors.required && (
                       <Text
                         style={{marginTop: 5, marginStart: 5, color: 'red'}}>
-                        First name is required
+                        Vui lòng nhập Họ và tên
                       </Text>
                     )}
                     {control.isInvalid &&
@@ -76,67 +78,19 @@ const SignupScreen = props => {
                       control.errors.minLength && (
                         <Text
                           style={{marginTop: 5, marginStart: 5, color: 'red'}}>
-                          First name should be at least 2 characters long
+                          Kích thước quá ngắn, tối thiểu 2 ký tự
                         </Text>
                       )}
                     {control.isInvalid && control.errors.maxLength && (
                       <Text
                         style={{marginTop: 5, marginStart: 5, color: 'red'}}>
-                        First name should be maximum of 32 characters long
+                        Kích thước quá dài, tối đa 24 ký tự
                       </Text>
                     )}
                   </View>
                 )}
               </Foect.Control>
-              <Foect.Control
-                name="last_name"
-                required
-                minLength={2}
-                maxLength={32}>
-                {control => (
-                  <View style={{flex: 1, marginStart: 5}}>
-                    <TextInput
-                      style={{
-                        backgroundColor: COLORS.WHITE,
-                        height: 50,
-                        maxHeight: 50,
-                        minHeight: 50,
-                        fontSize: 16,
-                        borderRadius: 10,
-                        paddingHorizontal: 20,
-                        fontFamily: FONTS.MONTSERRAT,
-                      }}
-                      placeholder="Last Name"
-                      placeholderTextColor={COLORS.PLACEHOLDER_COLOR}
-                      cursorColor={COLORS.ORANGE}
-                      selectionColor={COLORS.ORANGE}
-                      onBlur={control.markAsTouched}
-                      onChangeText={text => control.onChange(text)}
-                      value={control.value}
-                    />
-                    {control.isInvalid && control.errors.required && (
-                      <Text
-                        style={{marginTop: 5, marginStart: 5, color: 'red'}}>
-                        Last name is required
-                      </Text>
-                    )}
-                    {control.isInvalid &&
-                      !control.errors.required &&
-                      control.errors.minLength && (
-                        <Text
-                          style={{marginTop: 5, marginStart: 5, color: 'red'}}>
-                          Last name should be at least 2 characters long
-                        </Text>
-                      )}
-                    {control.isInvalid && control.errors.maxLength && (
-                      <Text
-                        style={{marginTop: 5, marginStart: 5, color: 'red'}}>
-                        Last name should be maximum of 32 characters long
-                      </Text>
-                    )}
-                  </View>
-                )}
-              </Foect.Control>
+              
             </View>
             <Foect.Control name="email" required email>
               {control => (
@@ -162,7 +116,7 @@ const SignupScreen = props => {
                   />
                   {control.isInvalid && control.errors.required && (
                     <Text style={{marginTop: 5, marginStart: 5, color: 'red'}}>
-                      Email is required
+                      Vui lòng nhập Email
                     </Text>
                   )}
                   {control.isInvalid &&
@@ -170,7 +124,7 @@ const SignupScreen = props => {
                     control.errors.email && (
                       <Text
                         style={{marginTop: 5, marginStart: 5, color: 'red'}}>
-                        Email is not valid
+                        Email không hợp lệ
                       </Text>
                     )}
                 </View>
@@ -195,7 +149,7 @@ const SignupScreen = props => {
                       paddingHorizontal: 20,
                       fontFamily: FONTS.MONTSERRAT,
                     }}
-                    placeholder="Password"
+                    placeholder="Mật khẩu"
                     placeholderTextColor={COLORS.PLACEHOLDER_COLOR}
                     cursorColor={COLORS.ORANGE}
                     selectionColor={COLORS.ORANGE}
@@ -205,7 +159,7 @@ const SignupScreen = props => {
                   />
                   {control.isInvalid && control.errors.required && (
                     <Text style={{marginTop: 5, marginStart: 5, color: 'red'}}>
-                      Password is required
+                      Vui lòng nhập mật khẩu
                     </Text>
                   )}
                   {control.isInvalid &&
@@ -213,9 +167,9 @@ const SignupScreen = props => {
                     control.errors.pattern && (
                       <Text
                         style={{marginTop: 5, marginStart: 5, color: 'red'}}>
-                        Password should contain minimum eight characters, at
-                        least one uppercase letter, one lowercase letter, one
-                        number and one special character
+                        Mật khẩu phải chứa tối thiểu 8 ký tự, 
+                        Ít nhất một chữ cái viết hoa, một chữ cái viết thường, 
+                        số và một ký tự đặc biệt
                       </Text>
                     )}
                 </View>
@@ -238,7 +192,7 @@ const SignupScreen = props => {
                       paddingHorizontal: 20,
                       fontFamily: FONTS.MONTSERRAT,
                     }}
-                    placeholder="Confirm Password"
+                    placeholder="Nhập lại mật khẩu"
                     placeholderTextColor={COLORS.PLACEHOLDER_COLOR}
                     cursorColor={COLORS.ORANGE}
                     selectionColor={COLORS.ORANGE}
@@ -248,7 +202,7 @@ const SignupScreen = props => {
                   />
                   {control.isInvalid && control.errors.required && (
                     <Text style={{marginTop: 5, marginStart: 5, color: 'red'}}>
-                      Confirm Password is required
+                      Vui lòng nhập lại mật khẩu
                     </Text>
                   )}
                   {control.isInvalid &&
@@ -256,47 +210,59 @@ const SignupScreen = props => {
                     control.errors.equalToControl && (
                       <Text
                         style={{marginTop: 5, marginStart: 5, color: 'red'}}>
-                        Passwords do not match
+                        Mật khẩu không khớp
                       </Text>
                     )}
                 </View>
               )}
             </Foect.Control>
-            <Foect.Control name="mobile" pattern={/^[0-9]{10}/}>
-              {control => (
-                <View style={{marginTop: 20}}>
-                  <TextInput
-                    style={{
-                      backgroundColor: COLORS.WHITE,
-                      height: 50,
-                      maxHeight: 50,
-                      minHeight: 50,
-                      fontSize: 16,
-                      borderRadius: 10,
-                      paddingHorizontal: 20,
-                      fontFamily: FONTS.MONTSERRAT,
-                    }}
-                    placeholder="Mobile"
-                    placeholderTextColor={COLORS.PLACEHOLDER_COLOR}
-                    cursorColor={COLORS.ORANGE}
-                    selectionColor={COLORS.ORANGE}
-                    onBlur={control.markAsTouched}
-                    onChangeText={text => control.onChange(text)}
-                    value={control.value}
-                  />
-                  {control.isInvalid && control.errors.pattern && (
-                    <Text style={{marginTop: 5, marginStart: 5, color: 'red'}}>
-                      Mobile number is not valid
-                    </Text>
-                  )}
-                </View>
-              )}
-            </Foect.Control>
-            <TouchableWithoutFeedback onPress={() => form.submit()}>
+            <Foect.Control 
+            name="mobile" required pattern={/^[0-9]{10}/}>
+                {control => (
+                  <View style={{marginTop: 20}}>
+                    <TextInput
+                      style={{
+                        backgroundColor: COLORS.WHITE,
+                        height: 50,
+                        maxHeight: 50,
+                        minHeight: 50,
+                        fontSize: 16,
+                        borderRadius: 10,
+                        paddingHorizontal: 20,
+                        fontFamily: FONTS.MONTSERRAT,
+                      }}
+                      placeholder="Số điện thoại"
+                      placeholderTextColor={COLORS.PLACEHOLDER_COLOR}
+                      cursorColor={COLORS.ORANGE}
+                      selectionColor={COLORS.ORANGE}
+                      onBlur={control.markAsTouched}
+                      onChangeText={text => control.onChange(text)}
+                      value={control.value}
+                    />
+                    
+                    {control.isInvalid && control.errors.required && (
+                      <Text style={{marginTop: 5, marginStart: 5, color: 'red'}}>
+                        Vui lòng nhập số điện thoại
+                      </Text>
+                    )}
+                   
+                  </View>
+                )}
+              </Foect.Control>
+              <TouchableWithoutFeedback
+              onPress={() => {
+                if (form.isValid) { // Check if the form is valid
+                  form.submit(); // Submit the form if valid
+                } else {
+                  Alert.alert('Thông báo', 'Vui lòng điền đầy đủ thông tin.');
+                }
+
+              }}
+              >
               <View
                 style={{
                   height: 50,
-                  backgroundColor: COLORS.ORANGE,
+                  backgroundColor: COLORS.MAIN,
                   marginTop: 20,
                   borderRadius: 10,
                   justifyContent: 'center',
@@ -308,26 +274,28 @@ const SignupScreen = props => {
                     color: COLORS.WHITE,
                     fontSize: 16,
                   }}>
-                  Sign Up
+                  Đăng ký
                 </Text>
               </View>
             </TouchableWithoutFeedback>
+
+                  
           </View>
         )}
       </Foect.Form>
       <View
         style={{flexDirection: 'row', justifyContent: 'center', marginTop: 50}}>
         <Text style={{fontFamily: FONTS.MONTSERRAT_MEDIUM}}>
-          Already a member?
+          Bạn đã có tài khoản?
         </Text>
         <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
           <Text
             style={{
               marginStart: 5,
               fontFamily: FONTS.MONTSERRAT_SEMI_BOLD,
-              color: 'orange',
+              color: '#76D7C4',
             }}>
-            Sign In
+            Đăng nhập
           </Text>
         </TouchableWithoutFeedback>
       </View>

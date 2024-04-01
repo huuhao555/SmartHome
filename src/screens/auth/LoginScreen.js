@@ -17,29 +17,21 @@ import {useTheme} from '@react-navigation/native';
 const LoginScreen = props => {
   const {navigation} = props;
 
-  const {isDarkTheme, setIsDarkTheme} = useContext(AppContext);
 
   const {colors} = useTheme();
 
   return (
     <SafeAreaView style={{marginHorizontal: 30}}>
-      <View>
-        <Switch
-          value={isDarkTheme}
-          onChange={() => {
-            setIsDarkTheme(prev => !prev);
-          }}
-        />
-      </View>
+      
       <Text
         style={{
-          marginTop: 100,
+          marginTop: 60,
           textAlign: 'center',
           fontFamily: FONTS.MONTSERRAT_BOLD,
           fontSize: 24,
           color: colors.text,
         }}>
-        Hello Again!
+        XIN CHÀO!
       </Text>
       <Text
         style={{
@@ -47,11 +39,12 @@ const LoginScreen = props => {
           fontFamily: FONTS.MONTSERRAT,
           fontSize: 20,
           marginTop: 20,
-          marginHorizontal: 70,
+          marginHorizontal: 50,
           color: colors.text,
         }}>
-        Welcome back you've been missed!
+        Chào mừng bạn đến với Smart Home
       </Text>
+      <Image source={IMAGES.LOGO} style={{width: 200, height: 200, marginLeft: 70, marginTop: 30}}/>
       <TextInput
         style={{
           backgroundColor: COLORS.WHITE,
@@ -81,32 +74,40 @@ const LoginScreen = props => {
           marginTop: 20,
           fontFamily: FONTS.MONTSERRAT,
         }}
-        placeholder="Password"
+        placeholder="Mật khẩu"
         placeholderTextColor={COLORS.PLACEHOLDER_COLOR}
         cursorColor={COLORS.ORANGE}
         selectionColor={COLORS.ORANGE}
       />
-      <Text
-        style={{
-          fontFamily: FONTS.MONTSERRAT,
-          textAlign: 'right',
-          marginTop: 20,
-          color: colors.text,
-        }}>
-        Forgot Password?
-      </Text>
+      
+      <TouchableWithoutFeedback
+          onPress={() => navigation.navigate(SCREENS.FORGOTPASS)}>
+          <Text
+            style={{
+            // fontFamily: FONTS.MONTSERRAT,
+            textAlign: 'right',
+            marginTop: 20,
+            marginStart: 5,
+            fontFamily: FONTS.MONTSERRAT_SEMI_BOLD,
+            // color: '#76D7C4',
+            
+            }}>
+            Quên mật khẩu?
+          </Text>
+        </TouchableWithoutFeedback>
       <TouchableWithoutFeedback
         onPress={() => {
-          navigation.navigate(SCREENS.HOME);
+          navigation.navigate(SCREENS.CONFIRMLOGIN);
         }}>
         <View
           style={{
             height: 50,
-            backgroundColor: COLORS.ORANGE,
+            backgroundColor: COLORS.MAIN,
             marginTop: 20,
             borderRadius: 10,
             justifyContent: 'center',
             alignItems: 'center',
+            marginBottom: 50,
           }}>
           <Text
             style={{
@@ -114,11 +115,11 @@ const LoginScreen = props => {
               color: COLORS.WHITE,
               fontSize: 16,
             }}>
-            Sign In
+            Đăng nhập
           </Text>
         </View>
       </TouchableWithoutFeedback>
-      <View
+      {/* <View
         style={{
           marginTop: 50,
           flexDirection: 'row',
@@ -134,7 +135,7 @@ const LoginScreen = props => {
             fontFamily: FONTS.MONTSERRAT,
             color: colors.text,
           }}>
-          Or continue with
+          Hoặc tiếp tục với 
         </Text>
         <View
           style={{flex: 0.5, height: 2, backgroundColor: COLORS.GRAY_LIGHT}}
@@ -182,10 +183,10 @@ const LoginScreen = props => {
           }}>
           <Image source={IMAGES.FACEBOOK} style={{height: 40, width: 40}} />
         </View>
-      </View>
+      </View> */}
       <View style={{flexDirection: 'row', justifyContent: 'center'}}>
         <Text style={{fontFamily: FONTS.MONTSERRAT_MEDIUM, color: colors.text}}>
-          Not a member?
+          Chưa có tài khoản?
         </Text>
         <TouchableWithoutFeedback
           onPress={() => navigation.navigate(SCREENS.SIGNUP)}>
@@ -193,9 +194,9 @@ const LoginScreen = props => {
             style={{
               marginStart: 5,
               fontFamily: FONTS.MONTSERRAT_SEMI_BOLD,
-              color: 'orange',
+              color: '#76D7C4',
             }}>
-            Register now
+            Đăng ký tại đây
           </Text>
         </TouchableWithoutFeedback>
       </View>
